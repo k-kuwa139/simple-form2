@@ -1,5 +1,15 @@
-<input [(ngModel)]="text1">
+<form #calcForm="ngForm">
+
+<!-- required=>未入力を許さない -->
+<!-- #バリデートに名前をつける -->
+<input [(ngModel)]="text1" name="fieldOne" required #fieldOne="ngModel">
 +
-<input [(ngModel)]="text2">
-<button (click)="addAndShow()">CALC</button>
+<input [(ngModel)]="text2" name="fieldTwo" required #fieldTwo="ngModel">
+<button (click)="addAndShow()" [disabled]="calcForm.invalid">CALC</button>
  <div>{{result}}</div>
+ <div>
+   <!-- *ngIf="条件"を満たすときだけ、表示する -->
+  <span *ngIf="fieldOne.invalid" class="my-invalid">左側のフィールドが空白です</span>
+  <span *ngIf="fieldTwo.invalid" class="my-invalid">右側のフィールドが空白です</span>
+ </div>
+</form>

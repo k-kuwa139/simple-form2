@@ -10,7 +10,25 @@ export class SimpleFormComponent implements OnInit {
   text2:string="0";
   result:string= "足し算しましょう";
   addAndShow() : void {
-    this.result=this.text1;
+    let forResult:string="正しい値を入力してください";
+    //forResult=足し算の結果を文字列として表示するローカル変数
+    //forResult変数の初期値＝＞正しい値を入力してください
+    let int1:number;
+    let int2:number;
+    //let => 変数の宣言
+    
+    int1 = Number(this.text1);
+    int2 = Number(this.text2);
+    //text1・2に入力された値を数値に変換してint2という変数に格納する
+    
+    if (!Number.isNaN(int1) && !Number.isNaN(int2)){
+      //int1,int2共に数値であるので、足し算の結果を計算する
+        forResult = `${int1} + ${int2} = ${int1 + int2}`;
+    }
+    //NaN(Not a Number、数値にあらず)
+
+    this.result=forResult;
+    
     //this=>このクラスから生成されるオブジェクト（Angularではコンポーメント＝オブジェクト）
   }
   constructor() {
